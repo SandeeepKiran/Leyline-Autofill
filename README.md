@@ -5,9 +5,9 @@
 A browser extension for Firefox, Chrome and Edge. It reads the form on the current page, asks the AI model of your choice
 (OpenAI GPT or Anthropic Claude) for the answers, and writes them in. It never presses Submit.
 
-[![Leyline Autofill launch video](docs/media/leyline-autofill-preview.gif)](docs/media/leyline-autofill-launch.mp4)
+https://github.com/user-attachments/assets/1c7b6045-a944-4412-a257-4edc5aec2453
 
-*Click the animation to watch the 20-second launch video (MP4).*
+*The 20-second launch video. Turn the sound on.*
 
 ## Screenshots
 
