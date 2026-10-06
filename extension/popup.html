@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Leyline Autofill</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Browsers limit a popup to 800 x 600 pixels. Keep the popup small. */
+    body { width: 420px; padding: 12px 16px; }
+    h1 { font-size: 18px; margin-bottom: 4px; }
+    #autofill { width: 100%; font-size: 15px; padding: 10px; }
+    .status { user-select: text; white-space: pre-wrap; word-break: break-word; margin-top: 8px; padding: 8px 10px; }
+    .tools { margin-top: 8px; justify-content: space-between; }
+  </style>
+</head>
+<body>
+  <h1>Leyline Autofill</h1>
+  <p class="muted">Open the form and click Autofill. Then check it and press Submit yourself.</p>
+  <button id="autofill">✨ Autofill this page</button>
+  <div id="status" class="status muted">Ready. Shortcut: Alt+Shift+F</div>
+
+  <div class="row tools">
+    <button id="progress" class="secondary small" title="Ask Leyline Autofill what it is doing now">⏱ Progress?</button>
+    <span class="muted">
+      <span style="color:#14b8a6">■</span> filled &nbsp;
+      <span style="color:#f59e0b">■</span> needs you &nbsp;·&nbsp;
+      <a href="#" id="settings">Settings</a>
+    </span>
+  </div>
+  <div id="progressAnswer" class="status answer" hidden></div>
+
+  <section class="log">
+    <div class="log-head">
+      <h2>Progress log</h2>
+      <span id="progressSummary" class="muted"></span>
+      <span class="spacer"></span>
+      <button id="copyProgress" class="icon" title="Copy the Progress log to the clipboard">📋</button>
+    </div>
+    <ol id="progressLog" class="log-body"></ol>
+  </section>
+
+  <section class="log">
+    <div class="log-head">
+      <h2>Error log</h2>
+      <span id="errorSummary" class="muted"></span>
+      <span class="spacer"></span>
+      <button id="clearErrors" class="icon" title="Delete all entries in the Error log">Clear</button>
+      <button id="copyErrors" class="icon" title="Copy the Error log to the clipboard">📋</button>
+    </div>
+    <ol id="errorLog" class="log-body errors"></ol>
+  </section>
+
+  <footer class="credits">
+    <div id="version"></div>
+    <div>Made with ❤️ by Mousy!</div>
+  </footer>
+  <script type="module" src="popup.js"></script>
+</body>
+</html>

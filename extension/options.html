@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Leyline Autofill Settings</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    main { max-width: 860px; margin: 0 auto; padding: 32px 16px 64px; }
+    label.field { display: block; font-weight: 600; color: var(--heading); margin: 12px 0 6px; }
+    #saved, .template-note { color: var(--accent); }
+  </style>
+</head>
+<body>
+<main>
+  <h1>Leyline Autofill: Settings</h1>
+  <p class="muted">Everything here is stored only in this browser profile. Leyline Autofill sends it to the AI service (OpenAI or Anthropic) only when you click Autofill. The resume file never goes to the AI.</p>
+
+  <section class="panel">
+    <h2>1. AI model and API key</h2>
+    <p class="muted">Use a personal key, not a work key. Only the key for the chosen model is needed.</p>
+    <label class="field" for="model">Model</label>
+    <select id="model">
+      <option value="gpt-6-luna">OpenAI GPT-6 Luna: cheapest (well under $0.01 per form page)</option>
+      <option value="claude-opus-5-5">Claude Opus 5.5: best answers (about $0.05–0.10 per form page)</option>
+      <option value="claude-sonnet-5-5">Claude Sonnet 5.5: about half the cost of Opus</option>
+    </select>
+    <label class="field" for="openaiKey">OpenAI API key (for GPT models)</label>
+    <input type="password" id="openaiKey" placeholder="sk-..." autocomplete="off">
+    <label class="field" for="anthropicKey">Anthropic API key (for Claude models)</label>
+    <input type="password" id="anthropicKey" placeholder="sk-ant-..." autocomplete="off">
+  </section>
+
+  <section class="panel">
+    <h2>2. My profile and answer style</h2>
+    <p class="muted">Your career facts, story bank and writing rules. Load your "Job Application Answers - AI Prompt" file (.md or .txt). No file yet? Click Generate Template.</p>
+    <div class="row">
+      <input type="file" id="profileFile" accept=".md,.txt">
+      <button id="profileTemplate" class="secondary small" title="Download a starter file with [FILL IN] placeholders">Generate Template</button>
+      <span id="profileTemplateNote" class="template-note"></span>
+    </div>
+    <label class="field" for="profile">Job Application Answers - AI Prompt text</label>
+    <textarea id="profile" rows="12"></textarea>
+  </section>
+
+  <section class="panel">
+    <h2>3. LinkedIn Details</h2>
+    <p class="muted">Short answers that forms ask for: contact details, work authorization per country, notice period, salary. Load your "LinkedIn Details" file (.md or .txt). No file yet? Click Generate Template.</p>
+    <div class="row">
+      <input type="file" id="linkedinDetailsFile" accept=".md,.txt">
+      <button id="linkedinDetailsTemplate" class="secondary small" title="Download a starter file with [FILL IN] placeholders">Generate Template</button>
+      <span id="linkedinDetailsTemplateNote" class="template-note"></span>
+    </div>
+    <label class="field" for="linkedinDetails">LinkedIn Details text</label>
+    <textarea id="linkedinDetails" rows="12"></textarea>
+  </section>
+
+  <section class="panel">
+    <h2>4. Resume file</h2>
+    <p class="muted">Attached automatically to resume or CV upload boxes. A PDF works best.</p>
+    <div class="row"><input type="file" id="resumeFile" accept=".pdf,.doc,.docx"></div>
+    <p id="resumeName" class="muted" style="margin-top:8px">No resume saved yet.</p>
+  </section>
+
+  <div class="row">
+    <button id="save">Save settings</button>
+    <span id="saved"></span>
+  </div>
+
+  <footer class="credits">
+    <div id="version"></div>
+    <div>Made with ❤️ by Mousy!</div>
+  </footer>
+</main>
+<script type="module" src="options.js"></script>
+</body>
+</html>

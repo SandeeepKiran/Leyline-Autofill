@@ -1,0 +1,16 @@
+# Personal data: phone, email, salary answers, story bank. Keep it local only.
+Form Facts.md
+LinkedIn Details.md
+Job Application Answers*
+*.local.md
+
+# Python / test caches
+__pycache__/
+.pytest_cache/
+*.pyc
+
+# Extension build output (web-ext)
+web-ext-artifacts/
+
+# Launch video work folders (the /brag skills)
+brag-output*/

@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><title>Sample Job Application</title></head>
+<body>
+  <!-- A site search box behind the dialog: the helper must ignore it while the dialog is open. -->
+  <input type="search" id="site-search" aria-label="Search jobs">
+  <input type="text" id="behind-dialog" aria-label="Newsletter email">
+
+  <div role="dialog" aria-modal="true" id="apply-dialog">
+    <h2>Apply: Senior QA Manager</h2>
+    <form id="form" onsubmit="window.submitted = true; return false;">
+      <label for="first">First name</label>
+      <input id="first" name="first" required>
+
+      <input id="email" type="email" aria-label="Email address">
+
+      <label>Phone <input id="phone" type="tel" placeholder="+1 555 0100"></label>
+
+      <label for="country">Country</label>
+      <select id="country">
+        <option value="">Select…</option>
+        <option value="IN">India</option>
+        <option value="US">United States</option>
+      </select>
+
+      <fieldset>
+        <legend>Will you require visa sponsorship?</legend>
+        <label><input type="radio" name="sponsor" value="y"> Yes</label>
+        <label><input type="radio" name="sponsor" value="n"> No</label>
+      </fieldset>
+
+      <!-- Custom-styled radio: the real input is hidden, only the label shows. -->
+      <div>
+        <p>Open to relocation?</p>
+        <input type="radio" name="reloc" id="reloc-y" style="display:none"><label for="reloc-y">Yes, open to relocation</label>
+        <input type="radio" name="reloc" id="reloc-n" style="display:none"><label for="reloc-n">No</label>
+      </div>
+
+      <label><input type="checkbox" id="remote"> I am open to remote work</label>
+
+      <label for="why">Why do you want this job?</label>
+      <textarea id="why" maxlength="2000"></textarea>
+
+      <label for="cv">Resume/CV</label>
+      <input type="file" id="cv">
+
+      <label for="city">Location (city)</label>
+      <input id="city" role="combobox" aria-autocomplete="list" aria-controls="city-list">
+      <ul id="city-list" role="listbox"></ul>
+
+      <input type="hidden" id="token" value="secret">
+      <input type="text" id="disabled-field" disabled aria-label="Disabled field">
+
+      <button type="submit" id="submit">Submit application</button>
+    </form>
+  </div>
+
+  <script>
+    // Simulates a framework that only trusts input events, like React does.
+    window.inputEvents = {};
+    document.addEventListener("input", (e) => {
+      window.inputEvents[e.target.id] = (window.inputEvents[e.target.id] || 0) + 1;
+    }, true);
+    window.fileChanged = false;
+    document.getElementById("cv").addEventListener("change", () => { window.fileChanged = true; });
+
+    // Simulates a searchable dropdown: options appear after typing, and only a click commits the value.
+    const city = document.getElementById("city");
+    const list = document.getElementById("city-list");
+    window.cityPicked = "";
+    city.addEventListener("input", () => {
+      setTimeout(() => {
+        list.innerHTML = "";
+        for (const name of ["Chicago, Illinois, USA", "Berlin, Germany"]) {
+          if (!name.toLowerCase().includes(city.value.toLowerCase().slice(0, 4))) continue;
+          const li = document.createElement("li");
+          li.setAttribute("role", "option");
+          li.textContent = name;
+          li.addEventListener("click", () => { city.value = name; window.cityPicked = name; list.innerHTML = ""; });
+          list.appendChild(li);
+        }
+      }, 150);
+    });
+  </script>
+</body>
+</html>
